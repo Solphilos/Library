@@ -1,0 +1,45 @@
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid red 1px;;
+}
+
+.input_box {
+    height: 400px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid grey 1px;
+}
+
+.book_card {
+    height:fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    border: solid grey 1px;
+
+}
+
+
+.title_field {
+
+}
+
+.auth_field {
+
+}
+
+.pages_field {
+
+}
