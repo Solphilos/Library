@@ -1,37 +1,59 @@
 let myLibrary = [];
+let cardArray = [];
 
-function Book(title, author, pages) {    
+function Book(title, author, pages) {               ///////// Work with displayBooks function, figure out how to display each individual library object!!! /////
     this.title = title
     this.author = author
     this.pages = pages
 }
 
-function addToLibrary(obj, title, author, pages) {      // takes objects created by the Book constructor and adds them to the myLibrary array.
-     obj = new Book(title, author, pages);              // figure out how to take values from text input fields
-    myLibrary.push(book);
+function addToLibrary(title, author, pages) {                      // takes objects created by the Book constructor and adds them to the myLibrary array.
+   myLibrary.push(new Book(title, author, pages));               
+   displayBooks();                                                // displays library objects in book_card div, a new card for each entry/book 
 }
 
-function displayBooks() {                         // loops through myLibrary array and displays each object
-    myLibrary.forEach(newFunc);
-    function newFunc() {
-        alert()
+function displayBooks() {                                         // loops through myLibrary array and displays each object
+    for (let i = 0; i < myLibrary.length; i++) {              
+           for(let key in myLibrary[i]) {                          
+           //populateCards(myLibrary[i][key]);
+           cardArray.push(myLibrary[i][key])
+        }
+        populateCards(cardArray)
     }
 }
 
-
- 
-////////////////////////////////////////////  
-
-function returnUserInput() {
+function populateCards(bookObj) {
+    const e = document.createElement('div');                         // creates a new div with class .cards nad populates them with array objects
+    e.classList.add('cards');
+    e.innerHTML = bookObj;
+    document.querySelector('.book_cards').appendChild(e);
+    const remove = document.createElement('button');
+    remove.setAttribute('id', 'remove');
+    remove.textContent = 'Remove';
+    e.appendChild(remove);
+    remove.addEventListener('click', function() {e.remove()})
     
-    document.getElementById('book_title').innerHTML = document.getElementById('title').value;       // displays the value of text inputs on screen. 
-    document.getElementById('book_auth').innerHTML = document.getElementById('author').value;       // modify this to make text inputs use addToLibrary...
-    document.getElementById('book_pages').innerHTML = document.getElementById('pages').value;       // ... function to construct book objects and send to array
 }
 
+function getValues() {                                             // gets values from text inputs and uses them as arguments in the addToLibrary function
+    let title = document.getElementById('title').value; 
+    let auth = document.getElementById('author').value; 
+    let page = document.getElementById('pages').value;
+    addToLibrary(title, auth, page);
+}
 
-document.getElementById('submit').addEventListener('click', returnUserInput)
+function resetValues() {                                      // to empty array in order to start a new book object and accompanying card div
+    myLibrary = [];
+    cardArray = [];
+    document.getElementById('add_new').style.display = 'none'; 
+}
+  
 
+document.getElementById('submit').addEventListener('click', getValues)
+document.getElementById('submit').addEventListener('click', resetValues)
 
+document.getElementById('new').addEventListener('click', function () {
+    document.getElementById('add_new').style.display = 'flex';
+})
 
 
