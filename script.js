@@ -1,7 +1,9 @@
 let myLibrary = [];
 let cardArray = [];
 
-function Book(title, author, pages) {               ///////// Work with displayBooks function, figure out how to display each individual library object!!! /////
+
+
+function Book(title, author, pages) {            
     this.title = title
     this.author = author
     this.pages = pages
@@ -15,23 +17,37 @@ function addToLibrary(title, author, pages) {                      // takes obje
 function displayBooks() {                                         // loops through myLibrary array and displays each object
     for (let i = 0; i < myLibrary.length; i++) {              
            for(let key in myLibrary[i]) {                          
-           //populateCards(myLibrary[i][key]);
            cardArray.push(myLibrary[i][key])
         }
-        populateCards(cardArray)
+        btitle = cardArray[0];
+        bauthor = cardArray[1];
+        bpages = cardArray[2];
+        populateCards(btitle, bauthor, bpages);
     }
+    
 }
 
-function populateCards(bookObj) {
-    const e = document.createElement('div');                         // creates a new div with class .cards nad populates them with array objects
-    e.classList.add('cards');
-    e.innerHTML = bookObj;
-    document.querySelector('.book_cards').appendChild(e);
+function populateCards(title, author, pages) {
+    const card = document.createElement('div');                         // creates new divs and populates them with array objects
+    card.classList.add('cards');
+    const tit = document.createElement('div');
+    tit.classList.add('title');
+    const auth = document.createElement('div');                        // an error here sends all data to the first newly created div. must fix
+    auth.classList.add('author');
+    const pag = document.createElement('div');
+    pag.classList.add('pages');
+    tit.innerHTML = title;  
+    auth.innerHTML = author;
+    pag.innerHTML = pages;                                          
+    document.querySelector('.book_cards').appendChild(card);
+    card.appendChild(tit);      
+    card.appendChild(auth);
+    card.appendChild(pag);
     const remove = document.createElement('button');
     remove.setAttribute('id', 'remove');
     remove.textContent = 'Remove';
-    e.appendChild(remove);
-    remove.addEventListener('click', function() {e.remove()})
+    card.appendChild(remove);
+    remove.addEventListener('click', function() {card.remove()})
     
 }
 
@@ -40,6 +56,7 @@ function getValues() {                                             // gets value
     let auth = document.getElementById('author').value; 
     let page = document.getElementById('pages').value;
     addToLibrary(title, auth, page);
+    resetValues();
 }
 
 function resetValues() {                                      // to empty array in order to start a new book object and accompanying card div
@@ -49,11 +66,11 @@ function resetValues() {                                      // to empty array 
 }
   
 
-document.getElementById('submit').addEventListener('click', getValues)
-document.getElementById('submit').addEventListener('click', resetValues)
+//document.getElementById('submit').addEventListener('click', getValues)     // make and onclick function to perform these actions
+//document.getElementById('submit').addEventListener('click', resetValues)
 
 document.getElementById('new').addEventListener('click', function () {
     document.getElementById('add_new').style.display = 'flex';
+    
 })
-
 

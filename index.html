@@ -6,36 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css" class="rel">
+    
 </head>
 <body>
     <div class="container">
-        <div class="input_box">
-             <div class="addButton">
-                    <button id="new">+ New book</button>
-              </div>
-                  <div id="add_new">
-                      <div class="title_field">
-                            <label for="title" id="inputs" name="title">Title</label>
-                            <input type="text" id="title">
-                      </div>
-                      <div class="auth_field">
-                            <label for="author" id="inputs" name="author">Author</label>
-                            <input type="text" id="author">
-                      </div>
-                      <div class="pages_field">
-                            <label for="pages" id="inputs" name="pages">Pages</label>
-                            <input type="text" id="pages">
-                      </div>
-                </div>  
-            
-        </div>
-        <button type="submit" id="submit">Submit</button>
+          <div class="header">
+                <h1>My Library</h1>
+                <div class="addButton">
+                  
+               </div> 
+          </div>
+          
+        
+             
+              
+               <div id="add_new">
+                     <p>New book</p>
+                    <form>
+                            <div class="title_field">
+                                  <label for="title" id="inputs" name="title"></label>
+                                  <input type="text" id="title" placeholder="Title" required />
+                            </div>
+                            <div class="auth_field">
+                                  <label for="author" id="inputs" name="author"></label>
+                                  <input type="text" id="author" placeholder="Author" required />
+                            </div>
+                            <div class="pages_field">
+                                  <label for="pages" id="inputs" name="pages"></label>
+                                  <input type="text" id="pages" placeholder="Pages" required />
+                            </div>
+                            <button type="button" id="submit" onclick="getValues()">Add to bookshelf</button>
+                    </form>
+                    <img src="icons/close.svg" alt="close" id="close">  
+               </div>  
+                
+        
+        
         
         <div class="book_cards">
-            
-            
         </div>
+        <img src="icons/plus-circle-outline.svg" alt="new book" id="new">
     </div>
- <script src="script.js"></script>  
+ <script src="script.js" defer></script>  
 </body>
 </html>
