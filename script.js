@@ -74,3 +74,5 @@ document.getElementById('new').addEventListener('click', function () {
     
 })
 
+
+document.getElementById('close').addEventListener('click', () => document.getElementById('add_new').style.display = 'none');
